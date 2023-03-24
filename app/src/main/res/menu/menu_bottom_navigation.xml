@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_plus"
+        android:icon="@drawable/ic_plus"
+        android:title="Cộng" />
+
+    <item
+        android:id="@+id/menu_minus"
+        android:icon="@drawable/ic_minus"
+        android:title="Trừ" />
+
+    <item
+        android:id="@+id/menu_multyply"
+        android:icon="@drawable/ic_multiply"
+        android:title="Nhân" />
+
+    <item
+        android:id="@+id/menu_division"
+        android:icon="@drawable/ic_division"
+        android:title="Chia" />
+</menu>
