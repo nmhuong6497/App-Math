@@ -3,9 +3,11 @@ package com.example.appmath2023;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import java.util.ArrayList;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.List;
-import java.util.Set;
 
 public class AppCache {
     private SharedPreferences sharedPreferences;
@@ -29,10 +31,14 @@ public class AppCache {
         editor.commit();
     }
 
-    public void saveDataList(String key, List<String> value) {
-        editor = sharedPreferences.edit();
-        editor.putStringSet(key, (Set<String>) value);
-        editor.commit();
+    public void saveDataList(String key, List<String> data) {
+        if (data != null) {
+            Gson gson = new Gson();
+            String json = gson.toJson(data);
+            editor = sharedPreferences.edit();
+            editor.putString(key, json);
+            editor.commit();
+        }
     }
 
     public String getDataString (String key) {
@@ -40,10 +46,10 @@ public class AppCache {
     }
 
     public List<String> getDataList(String key) {
-        sharedPreferences.getStringSet(key, null);
-        List<String> changeList = new ArrayList<>();
-        changeList.addAll(sharedPreferences.getStringSet(key, null));
-        return changeList;
+        String json = sharedPreferences.getString(key, null);
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<String>>() {}.getType();
+        return gson.fromJson(json, type);
     }
 
     public void clearCache() {

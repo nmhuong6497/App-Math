@@ -1,8 +1,6 @@
 package com.example.appmath2023;
 
-import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -14,14 +12,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder> {
-    List<String> historyList;
+    private List<String> historyList;
     public HistoryAdapter() {
         historyList = new ArrayList<>();
     }
 
-    public void setHistoryList(String caculation) {
-        historyList.add(0, caculation);
+    public void updateHistoryList(String caculation) {
+        if (caculation != null) {
+            historyList.add(0, caculation);
+        } else {
+            historyList.clear();
+        }
         notifyDataSetChanged();
+    }
+
+    public void setHistoryList(List<String> historyList) {
+        this.historyList = historyList;
     }
 
     public List<String> getHistoryList() {

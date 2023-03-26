@@ -1,5 +1,7 @@
 package com.example.appmath2023;
 
+import androidx.fragment.app.Fragment;
+
 import java.util.Random;
 
 public class MinusFragment extends PlusFragment {
@@ -19,12 +21,12 @@ public class MinusFragment extends PlusFragment {
         ifResultFalse = random.nextInt(3 - 1) + 1;
 
         // Kết quả phép tính
-//        if (isTrue) {
-//            binding.textViewCaculation.setText(number1 + " - " + number2 + " = " + result);
-//            history = "✅ " + binding.textViewCaculation.getText().toString() + "\n\n" + history;
-//        } else {
-//            binding.textViewCaculation.setText(number1 + " - " + number2 + " = " + (result + ifResultFalse));
-//            history = "❌ " + binding.textViewCaculation.getText().toString() + "\n\n" + history;
-//        }
+        if (isTrue) {
+            binding.textViewCaculation.setText(number1 + " - " + number2 + " = " + result);
+            caculation = "✅ " + binding.textViewCaculation.getText().toString();
+        } else {
+            binding.textViewCaculation.setText(number1 + " - " + number2 + " = " + (result + ifResultFalse));
+            caculation = "❌ " + binding.textViewCaculation.getText().toString();
+        }
     }
 }

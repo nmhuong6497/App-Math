@@ -5,17 +5,12 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmath2023.databinding.FragmentPlusBinding;
 
@@ -32,6 +27,7 @@ public class PlusFragment extends Fragment {
     boolean isTime = true;
     String caculation;
     HistoryAdapter historyAdapter;
+    AppCache appCache;
 
     @Nullable
     @Override
@@ -51,19 +47,29 @@ public class PlusFragment extends Fragment {
         randomNumber();
         time();
         delayButtonReset();
-        buttonSetOnClickListener();
-
-
+        eventListener();
     }
 
-    private void buttonSetOnClickListener() {
-//        binding.buttonDeleteHistory.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                history = "";
-//                historyAdapter.setHistoryList(list);
-//            }
-//        });
+    private void eventListener() {
+        binding.checkboxDeleteHistory.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    binding.recyclerviewHistory.setVisibility(View.VISIBLE);
+                    binding.textViewDeleteHistory.setVisibility(View.VISIBLE);
+                } else {
+                    binding.recyclerviewHistory.setVisibility(View.GONE);
+                    binding.textViewDeleteHistory.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        binding.textViewDeleteHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                historyAdapter.updateHistoryList(null);
+            }
+        });
 
         binding.buttonReset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +98,7 @@ public class PlusFragment extends Fragment {
                     point = point - 10;
                 }
                 binding.textViewPoint.setText(point + "");
-                historyAdapter.setHistoryList(caculation);
+                historyAdapter.updateHistoryList(caculation);
                 isTime = false;
                 binding.buttonReset.setEnabled(true);
                 binding.buttonCorrect.setEnabled(false);
@@ -113,7 +119,7 @@ public class PlusFragment extends Fragment {
                     point = point - 10;
                 }
                 binding.textViewPoint.setText(point + "");
-                historyAdapter.setHistoryList(caculation);
+                historyAdapter.updateHistoryList(caculation);
                 isTime = false;
                 binding.buttonReset.setEnabled(true);
                 binding.buttonCorrect.setEnabled(false);
@@ -134,10 +140,11 @@ public class PlusFragment extends Fragment {
     }
 
     private void getHistory() {
-        AppCache appCache = AppCache.getInstance(getActivity());
-        String historySaved = appCache.getDataString(key());
-//        history = historySaved == null ? history : historySaved;
-//        historyAdapter.setHistoryList(list);
+        appCache = AppCache.getInstance(getActivity());
+        List<String> historySaved = appCache.getDataList(key());
+        if (historySaved != null) {
+            historyAdapter.setHistoryList(historySaved);
+        }
     }
 
     public String key() {
@@ -181,7 +188,7 @@ public class PlusFragment extends Fragment {
                     handler.removeCallbacks(this);
                     point = point - 10;
                     binding.textViewPoint.setText(point + "");
-                    historyAdapter.setHistoryList(caculation);
+                    historyAdapter.updateHistoryList(caculation);
                     binding.buttonReset.setEnabled(true);
                     binding.buttonCorrect.setEnabled(false);
                     binding.buttonWrong.setEnabled(false);
@@ -191,10 +198,10 @@ public class PlusFragment extends Fragment {
         }, 1000);
     }
 
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        AppCache appCache = AppCache.getInstance(getActivity());
-//        appCache.saveDataString(key(), history);
-//    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        appCache = AppCache.getInstance(getActivity());
+        appCache.saveDataList(key(), historyAdapter.getHistoryList());
+    }
 }

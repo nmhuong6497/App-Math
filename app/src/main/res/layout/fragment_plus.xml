@@ -97,7 +97,9 @@
         android:id="@+id/checkbox_delete_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:checked="true"
         android:text="Lịch sử"
         android:textColor="#127516"
         android:textSize="18sp"
@@ -105,24 +107,25 @@
         app:layout_constraintTop_toBottomOf="@+id/text_view_time" />
 
     <TextView
-        app:layout_constraintTop_toTopOf="@id/checkbox_delete_history"
+        android:id="@+id/text_view_delete_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xóa toàn bộ"
+        android:textColor="#FF5A5A"
+        android:textSize="18sp"
+        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="@id/checkbox_delete_history"
         app:layout_constraintEnd_toEndOf="@id/recyclerview_history"
-        android:text="Xóa toàn bộ"
-        android:textStyle="italic"
-        android:textColor="#FF0000"
-        android:textSize="18sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintTop_toTopOf="@id/checkbox_delete_history" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginBottom="5dp"
-        android:paddingVertical="5dp"
         android:id="@+id/recyclerview_history"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/background_history"
+        android:paddingVertical="5dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

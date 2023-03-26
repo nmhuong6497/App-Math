@@ -19,12 +19,12 @@ public class MultiplyFragment extends PlusFragment {
         ifResultFalse = random.nextInt(3 - 1) + 1;
 
         // Kết quả phép tính
-//        if (isTrue) {
-//            binding.textViewCaculation.setText(number1 + " x " + number2 + " = " + result);
-//            history = "✅ " + binding.textViewCaculation.getText().toString() + "\n\n" + history;
-//        } else {
-//            binding.textViewCaculation.setText(number1 + " x " + number2 + " = " + (result + ifResultFalse));
-//            history = "❌ " + binding.textViewCaculation.getText().toString() + "\n\n" + history;
-//        }
+        if (isTrue) {
+            binding.textViewCaculation.setText(number1 + " x " + number2 + " = " + result);
+            caculation = "✅ " + binding.textViewCaculation.getText().toString();
+        } else {
+            binding.textViewCaculation.setText(number1 + " x " + number2 + " = " + (result + ifResultFalse));
+            caculation = "❌ " + binding.textViewCaculation.getText().toString();
+        }
     }
 }
