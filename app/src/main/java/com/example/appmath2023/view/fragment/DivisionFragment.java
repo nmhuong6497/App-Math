@@ -1,11 +1,11 @@
-package com.example.appmath2023;
+package com.example.appmath2023.view.fragment;
 
 import java.util.Random;
 
-public class MultiplyFragment extends PlusFragment {
+public class DivisionFragment extends PlusFragment {
     @Override
     public String key() {
-        String key = "historyMultiply";
+        String key = "historyDivision";
         return key;
     }
 
@@ -20,10 +20,10 @@ public class MultiplyFragment extends PlusFragment {
 
         // Kết quả phép tính
         if (isTrue) {
-            binding.textViewCaculation.setText(number1 + " x " + number2 + " = " + result);
+            binding.textViewCaculation.setText(result + " : " + number2 + " = " + number1);
             caculation = "✅ " + binding.textViewCaculation.getText().toString();
         } else {
-            binding.textViewCaculation.setText(number1 + " x " + number2 + " = " + (result + ifResultFalse));
+            binding.textViewCaculation.setText(result + " : " + number2 + " = " + (number1 + ifResultFalse));
             caculation = "❌ " + binding.textViewCaculation.getText().toString();
         }
     }

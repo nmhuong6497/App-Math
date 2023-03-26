@@ -1,4 +1,4 @@
-package com.example.appmath2023;
+package com.example.appmath2023.local;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -25,12 +25,6 @@ public class AppCache {
         return instance;
     }
 
-    public void saveDataString(String key, String value) {
-        editor = sharedPreferences.edit();
-        editor.putString(key, value);
-        editor.commit();
-    }
-
     public void saveDataList(String key, List<String> data) {
         if (data != null) {
             Gson gson = new Gson();
@@ -39,10 +33,6 @@ public class AppCache {
             editor.putString(key, json);
             editor.commit();
         }
-    }
-
-    public String getDataString (String key) {
-        return sharedPreferences.getString(key, null);
     }
 
     public List<String> getDataList(String key) {

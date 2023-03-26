@@ -1,4 +1,4 @@
-package com.example.appmath2023;
+package com.example.appmath2023.view.fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,9 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.appmath2023.local.AppCache;
+import com.example.appmath2023.view.adapter.HistoryAdapter;
 import com.example.appmath2023.databinding.FragmentPlusBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 

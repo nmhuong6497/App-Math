@@ -1,4 +1,4 @@
-package com.example.appmath2023;
+package com.example.appmath2023.view.adapter;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

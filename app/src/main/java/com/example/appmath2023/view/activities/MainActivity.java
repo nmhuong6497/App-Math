@@ -1,4 +1,4 @@
-package com.example.appmath2023;
+package com.example.appmath2023.view.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,8 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.appmath2023.R;
 import com.example.appmath2023.databinding.ActivityMainBinding;
-import com.example.appmath2023.databinding.FragmentPlusBinding;
+import com.example.appmath2023.view.adapter.ViewPagerAdapter;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
